@@ -12,14 +12,14 @@ var burger = {
         });
     },
 
-    insertOne: function (table, columns, values, cb) {
-        orm.insertOne("burgers", columns, values, function(res) {
+    insertOne: function (table, columns, cb) {
+        orm.insertOne("burgers", columns, function(res) {
             cb(res); 
         });
     },
 
-    updateOne: function (table, objColValues, condition, cb) {
-        orm.updateOne("burgers", objColValues, condition, function (res) {
+    update: function (table, objColValues, condition, cb) {
+        orm.update("burgers", objColValues, condition, function (res) {
             cb(res);
         });
     }

@@ -49,20 +49,20 @@ var orm = {
 
 
 
-    insertOne: function (table, columns, values, cb) {
+    insertOne: function (table, columns, cb) {
         // var queryString = "INSERT INTO " + table;
          var queryString = "INSERT INTO  ??"; 
 
         queryString += " (";
         queryString += columns.toString();
         queryString += ") ";
-        queryString += "VALUES (";
-        queryString += printQuestionMarks(values.length);
-        queryString += ") ";
+        // queryString += "VALUES (";
+        // queryString += printQuestionMarks(values.length);
+        // queryString += ") ";
     
-        console.log(queryString);
+        console.log( "THIS IS" + queryString);
     
-        connection.query(queryString, values, function(err, result) {
+        connection.query(queryString, function(err, result) {
           if (err) {
             throw err;
           }

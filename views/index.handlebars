@@ -13,8 +13,8 @@
 
 <p>{{this.burger_name}}</p>
 <form action="bugers/update/{{this.id}}?_method=PUT" method="POST">
-<input type="hidden" name="devour" value="true">
-<button type="submit" class="btn btn-light">Devour it!</button>
+<input type="hidden" name="devoured" value="false">
+<button type="submit" class="btn" data-id="{{id}}" data-donedevoured="{{devoured}}">{{#unless devoured}}Devour it!{{else}}Too late!{{/unless}}</button>
 </form>
 
 {{/unless}}
@@ -26,7 +26,8 @@
      {{#each burgers}}
 {{#if this.devoured}}
 
-    <form action="bugers/update/{{this.id}}?_method=PUT" method="POST">
+
+    <form action="bugers/insertone/{{this.id}}?_method=POST" method="POST">
 <input type="text" class="form-control" placeholder={{this.burger_name}}>
 
 
@@ -41,7 +42,7 @@
             <form class="create-form" >
 
                         <div class="form-group">
-                            <input type="text" id="bu" name="name" class="form-control text-center" placeholder="Your Burge Goes Here!" >
+                            <input type="text" id="bu" name="name" class="form-control text-center" placeholder="Your Burger Goes Here!" >
                             <br>
                         <label for="ca">Enter a burger you would like to eat. Click the submit button</label>
                         
