@@ -36,20 +36,22 @@ function printQuestionMarks(num) {
 var orm = {
 
     selectAll: function (tableInput, cb) {
-        var queryString = "SELECT * FROM " +tableInput +";";
-        connection.query(queryString, function (err, result) {
+      console.log("This is the ORM");
+        var queryString = "SELECT * FROM ?? ";
+       var query = connection.query(queryString, [tableInput], function (err, result) {
             if (err) {
                 throw err;
             }
             cb(result);
         });
-        
+        console.log(query.sql);
     },
 
 
 
     insertOne: function (table, columns, values, cb) {
-        var queryString = "INSERT INTO " + table;
+        // var queryString = "INSERT INTO " + table;
+         var queryString = "INSERT INTO  ??"; 
 
         queryString += " (";
         queryString += columns.toString();
@@ -71,8 +73,8 @@ var orm = {
     //INSERT INTO burgers (col1, col2) VALUES ('string', true);
 },
 
-updateOne:function (table, objColValues, condition, cb) {
-    var queryString = "UPDATE " + table;
+update:function (table, objColValues, condition, cb) {
+    var queryString = "UPDATE ?? ";
 
     queryString += " SET ";
     queryString += objToSql(objColVals);

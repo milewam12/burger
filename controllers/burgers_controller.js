@@ -2,7 +2,8 @@ var express = require("express");
 var burger = require("../models/burger.js")
 var router = express.Router();
 
-router.get("/", function (req, res) {
+router.get("/index", function (req, res) {
+    console.log("This is the CONTROLLER");
     burger.selectAll( function (data) {
         var hbsObject = {
             burgers: data
@@ -10,6 +11,7 @@ router.get("/", function (req, res) {
         console.log(hbsObject);
         res.render("index", hbsObject);
     }); 
+    // res.send("hola");
 });
 
 router.post("/api/burgers", function (req, res) {
@@ -25,9 +27,8 @@ router.put("/api/burgers/:id", function (req, res) {
     
       console.log("condition", condition);
 
-      burger.updateOne({
+      burger.update({
           devoured: req.body.devoured
-
       }, condition, function (result) {
           if(result.changedRows == 0){
             return res.status(404).end();

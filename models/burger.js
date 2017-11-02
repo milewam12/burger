@@ -6,6 +6,7 @@ var orm = require("../config/orm.js");
 var burger = {
 
     selectAll: function (cb) {
+        console.log("This is the model");
         orm.selectAll("burgers", function (res) {
             cb(res);  
         });
