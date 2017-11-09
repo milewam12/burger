@@ -1,59 +1,53 @@
 <div class="container">
 
-<div class="text-center">
-        
-    <iframe src="https://giphy.com/embed/5dXzOahWX5wB2" width="300" height="300" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
-</div>
-
-  <div class="row">
-    <div class="col">
-      {{#each burgers}}
-{{!-- <p>{{this.burger_name}} {{this.devoured}}</p> --}}
-{{#unless this.devoured}}
-
-<p>{{this.burger_name}}</p>
-<form action="bugers/update/{{this.id}}?_method=PUT" method="POST">
-<input type="hidden" name="devoured" value="false">
-<button type="submit" class="btn" data-id="{{id}}" data-donedevoured="{{devoured}}">{{#unless devoured}}Devour it!{{else}}Too late!{{/unless}}</button>
-</form>
-
-{{/unless}}
-{{/each}}
-  </div>
-
-
-    <div class="col">
-     {{#each burgers}}
-{{#if this.devoured}}
-
-
-    <form action="bugers/insertone/{{this.id}}?_method=POST" method="POST">
-<input type="text" class="form-control" placeholder={{this.burger_name}}>
-
-
-{{/if}}
-{{/each}}
+    {{!-- TOP --}}
+    <div class="row">
+        <div class="col-xs-12 text-center">
+            <iframe src="https://giphy.com/embed/5dXzOahWX5wB2" width="300" height="300" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+        </div>
     </div>
-  </div>
-{{!-- end of the row --}}
 
- <div class="text-center">
-    <h1>Eat-Da-Burger!</h1>
-            <form class="create-form" >
+    {{!-- MIDDLE --}}
 
-                        <div class="form-group">
-                            <input type="text" id="bu" name="name" class="form-control text-center" placeholder="Your Burger Goes Here!" >
-                            <br>
-                        <label for="ca">Enter a burger you would like to eat. Click the submit button</label>
-                        
-                        </div>
-                    
-                        <button type="submit" class="btn btn-danger btn-lg">Submit</button>
-                    </form>
+    <div class="col-xs-6 text-center">
+        <div class="row">
+
+            {{#each hbsObject}} {{#unless this.devoured}}
+            <div class="col-xs-9 text-center">
+                <p>{{this.burger_name}}. {{this.id}}</p>
+            </div>
+
+            <div class="col-xs-3 text-center">
+                <form method="POST" action="/burgers/update?_method=PUT" class="btn">
+                    <input input type="hidden" type="text" name="burger_id" value={{this.id}}>
+                    <br>
+                    <button type="submit" class="btn">Devour it!</button>
+                </form>
+            </div>
+            {{/unless}} {{/each}}
+
+        </div>
+    </div>
+
+
+    <div class="col-xs-6 text-center">
+        {{#each hbsObject}} {{#if this.devoured}}
+
+        <input class="form-control" type="text" placeholder="{{this.id}} . {{this.burger_name}}"> {{/if}} {{/each}}
+    </div>
+    {{!-- bottom --}}
+    <div class="row">
+        <div class="col-xs-12 text-center">
+            <h1>Eat-Da-Burger!</h1>
+            <form action="/burgers/insertone" method="POST">
+                <input type="text" class="form-control" name="burger_name" value="" id="enter_text">
+                <br>
+                <button type="submit" class="btn btn-danger btn-lg" id="text-enter-button" class="submit">Submit</button>
+            </form>
+            <br>
+            <label>Enter a burger you would like to eat. Click the submit button</label>
 
         </div>
 
+    </div>
 </div>
-
-
-

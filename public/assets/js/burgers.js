@@ -1,4 +1,5 @@
-$(function() {
+$(document).ready(function () {
+  
     $(".btn").on("click", function(event) {
       var id = $(this).data("id");
       var doneDevoured = $(this).data("doneDevoured");
@@ -20,13 +21,13 @@ $(function() {
       );
     });
 
-    $(".create-form").on("submit", function(event) {
-        // Make sure to preventDefault on a submit event.
+    $(".submit").on("submit", function(event) {
+      
         event.preventDefault();
     
         var newBurger = {
-          name: $("#bu").val().trim(),
-          devoured: $("[name=devoured]:value=false").val().trim()
+          name: $(".form-control").val().trim(),
+          // devoured: $("[name=devoured]:value=false").val().trim()
         };
     
         // Send the POST request.
@@ -42,4 +43,6 @@ $(function() {
         );
 
 
+
+      });
 });

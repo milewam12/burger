@@ -37,28 +37,27 @@ var orm = {
 
     selectAll: function (tableInput, cb) {
       console.log("This is the ORM");
-        var queryString = "SELECT * FROM ?? ";
-       var query = connection.query(queryString, [tableInput], function (err, result) {
-            if (err) {
-                throw err;
-            }
-            cb(result);
+        var queryString = "SELECT * FROM  " + tableInput + ";";
+        connection.query(queryString, function(err, result) {
+          if (err) {
+            throw err;
+          }
+          cb(result);
         });
-        console.log(query.sql);
+
     },
 
 
 
-    insertOne: function (table, columns, cb) {
-        // var queryString = "INSERT INTO " + table;
-         var queryString = "INSERT INTO  ??"; 
-
+    insertOne: function (table, columns, values, cb) {
+        var queryString = "INSERT INTO " + table;
+       
         queryString += " (";
-        queryString += columns.toString();
+         queryString += columns.toString();
         queryString += ") ";
-        // queryString += "VALUES (";
-        // queryString += printQuestionMarks(values.length);
-        // queryString += ") ";
+        queryString += " VALUES (";
+        queryString += printQuestionMarks(values.length);
+        queryString += ") ";
     
         console.log( "THIS IS" + queryString);
     
@@ -74,7 +73,7 @@ var orm = {
 },
 
 update:function (table, objColValues, condition, cb) {
-    var queryString = "UPDATE ?? ";
+    var queryString = "UPDATE" + table;
 
     queryString += " SET ";
     queryString += objToSql(objColVals);
